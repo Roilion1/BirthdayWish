@@ -4,15 +4,19 @@ import confetti from "canvas-confetti";
 const BirthdayWish = () => {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [showWishes, setShowWishes] = useState(false);
+  const [showImage, setShowImage] = useState(false); // Trạng thái chỉ hiển thị hình ảnh một lần
 
   const handleOpenCard = () => {
     // Bắn pháo giấy
     fireConfetti();
-    // Hiện pháo xong mới hiện giao diện
+    // Sau khi bắn pháo, chờ 2 giây trước khi hiển thị hình ảnh cô ấy
     setTimeout(() => {
-      setIsCardOpen(true);
-      setTimeout(() => setShowWishes(true), 2000); // Hiện lời chúc sau 2 giây
-    }, 1500); // Thời gian pháo bắn
+      setShowImage(true); // Hiển thị hình ảnh cô ấy
+      setTimeout(() => {
+        setIsCardOpen(true); // Chuyển sang giao diện chính
+        setTimeout(() => setShowWishes(true), 500); // Hiện lời chúc sau khi giao diện chính đã hiện
+      }, 1500); // Hiện giao diện chính sau 1.5 giây
+    }, 1500); // Bắn pháo xong chờ 1.5 giây để hình ảnh cô ấy xuất hiện
   };
 
   const fireConfetti = () => {
@@ -79,14 +83,16 @@ const BirthdayWish = () => {
       ) : (
         // Giao diện chính
         <div className="relative flex flex-col items-center justify-center min-h-screen">
-          {/* Hình ảnh cô ấy */}
-          <div className="absolute top-10">
-            <img
-              src={require("../src/assets/images/Người tôi thích.jpg")}
-              alt="Cô ấy"
-              className="w-60 h-60 rounded-full border-8 border-pink-600 shadow-lg"
-            />
-          </div>
+          {/* Hiển thị hình ảnh cô ấy sau khi bắn pháo */}
+          {showImage && (
+            <div className="absolute top-10 transition-transform duration-1000 transform scale-125">
+              <img
+                src={require("../src/assets/images/Người tôi thích.jpg")}
+                alt="Cô ấy"
+                className="w-60 h-60 rounded-full border-8 border-pink-600 shadow-lg"
+              />
+            </div>
+          )}
 
           {/* Thêm 4 khổ thơ */}
           {showWishes && (
