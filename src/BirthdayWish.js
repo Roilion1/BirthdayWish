@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import confetti from "canvas-confetti";
+import React, { useState, useRef, useEffect } from "react";
 
 const BirthdayWish = () => {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [showWishes, setShowWishes] = useState(false);
-  const [showImage, setShowImage] = useState(false); // Trạng thái chỉ hiển thị hình ảnh một lần
+  const [showImage, setShowImage] = useState(false);
+  const audioRef = useRef(null); // Reference để điều khiển nhạc
 
+  // Hàm mở thiệp và phát nhạc
   const handleOpenCard = () => {
-    // Bắn pháo giấy
-    fireConfetti();
-    // Sau khi bắn pháo, chờ 2 giây trước khi hiển thị hình ảnh cô ấy
     setTimeout(() => {
       setShowImage(true); // Hiển thị hình ảnh cô ấy
       setTimeout(() => {
@@ -17,39 +15,6 @@ const BirthdayWish = () => {
         setTimeout(() => setShowWishes(true), 500); // Hiện lời chúc sau khi giao diện chính đã hiện
       }, 1500); // Hiện giao diện chính sau 1.5 giây
     }, 1500); // Bắn pháo xong chờ 1.5 giây để hình ảnh cô ấy xuất hiện
-  };
-
-  const fireConfetti = () => {
-    const duration = 1.5 * 1000; // 1.5 giây
-    const end = Date.now() + duration;
-
-    const giftsArray = ["🎁", "🎉", "💝", "🌟"];
-
-    const frame = () => {
-      confetti({
-        particleCount: 50,
-        startVelocity: 30,
-        spread: 360,
-        ticks: 80,
-        origin: {
-          x: Math.random(),
-          y: 0, // Bắn từ trên xuống
-        },
-        colors: ["#ff69b4", "#ff1493", "#ff4500", "#ffd700", "#ff6347"],
-        shapes: giftsArray.map(gift => ({
-          type: "circle",
-          text: gift, // Thêm ký tự quà tặng vào pháo bông
-          fontSize: 20,
-          fontFamily: "Arial, sans-serif",
-        })),
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    };
-
-    frame();
   };
 
   const message =
@@ -61,6 +26,16 @@ const BirthdayWish = () => {
     "Chúc em luôn hạnh phúc, vẹn tròn,",
     "Mọi ước mơ bay cao vươn tầm."
   ];
+
+  // Đảm bảo âm thanh sẽ phát ngay khi trang được mở
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.load(); // Tải lại âm thanh khi trang được mở
+      audioRef.current.play().catch((error) => {
+        console.error("Không thể phát nhạc tự động:", error);
+      });
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300 flex items-center justify-center relative overflow-hidden">
@@ -79,6 +54,9 @@ const BirthdayWish = () => {
               className="w-20 h-20 animate-bounce mx-auto"
             />
           </button>
+          
+          {/* Thêm nhạc du dương khi bấm vào trái tim */}
+          <audio ref={audioRef} src={require("../src/assets/audio/ChucMungSinhNhat-PhanDinhTung-2804028.mp3")} />
         </div>
       ) : (
         // Giao diện chính
