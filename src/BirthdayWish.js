@@ -49,7 +49,7 @@ const BirthdayWish = () => {
   };
 
   const message =
-    "Chúc mừng sinh nhật người tôi yêu! Mong mọi điều tốt đẹp nhất sẽ đến với em trong ngày đặc biệt này.";
+    "Chúc mừng sinh nhật người tôi thầm mến! Mong mọi điều tốt đẹp nhất sẽ đến với em trong ngày đặc biệt này.";
 
   const poem = [
     "Như Quỳnh xinh đẹp, sáng ngời,",
