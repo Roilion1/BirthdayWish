@@ -1,18 +1,19 @@
 {
   "files": {
     "main.css": "/BirthdayWish/static/css/main.d1fd1eee.css",
-    "main.js": "/BirthdayWish/static/js/main.97068a92.js",
+    "main.js": "/BirthdayWish/static/js/main.67748031.js",
     "static/js/488.9c92ff38.chunk.js": "/BirthdayWish/static/js/488.9c92ff38.chunk.js",
+    "static/media/ChucMungSinhNhat-PhanDinhTung-2804028.mp3": "/BirthdayWish/static/media/ChucMungSinhNhat-PhanDinhTung-2804028.071bd16ebce21c229b0f.mp3",
     "static/media/Người tôi thích.jpg": "/BirthdayWish/static/media/Người tôi thích.a22dd6323499b2d028c6.jpg",
     "static/media/Banh-kem-thien-nga.jpg": "/BirthdayWish/static/media/Banh-kem-thien-nga.c55df921ff715c0dc528.jpg",
     "static/media/large_1625157242741.jpg": "/BirthdayWish/static/media/large_1625157242741.70a594e005d3b986bded.jpg",
     "index.html": "/BirthdayWish/index.html",
     "main.d1fd1eee.css.map": "/BirthdayWish/static/css/main.d1fd1eee.css.map",
-    "main.97068a92.js.map": "/BirthdayWish/static/js/main.97068a92.js.map",
+    "main.67748031.js.map": "/BirthdayWish/static/js/main.67748031.js.map",
     "488.9c92ff38.chunk.js.map": "/BirthdayWish/static/js/488.9c92ff38.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d1fd1eee.css",
-    "static/js/main.97068a92.js"
+    "static/js/main.67748031.js"
   ]
 }
